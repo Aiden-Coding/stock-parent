@@ -3,6 +3,7 @@ package com.aiden.stock.user.domain.controller;
 
 import com.aiden.stock.comon.Result;
 import com.aiden.stock.user.dto.UserLoginResp;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,6 +35,10 @@ public class UserController {
         ret.setPermissions(permissions);
         permissions.add("*.*.*");
         return Result.success(ret);
+    }
+    @GetMapping("/loginOut")
+    public Result logout(){
+        return Result.success("成功");
     }
 }
 

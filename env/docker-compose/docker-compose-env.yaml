@@ -17,3 +17,14 @@ services:
       - /etc/localtime:/etc/localtime:ro # 设置容器时区与宿主机保持一致
       - ./data/mysql/data:/var/lib/mysql/data # 映射数据库保存目录到宿主机，防止数据丢失
       - ./my.cnf:/etc/mysql/my.cnf # 映射数据库配置文件
+  tdengine:
+    image: tdengine/tdengine:latest
+    ports:
+      - 6030:6030  # 数据接收端口
+      - 6041:6041  # 数据接收端口
+      - 6031:6031  # 命令查询端口
+      - 6032:6032  # http查询端口
+    volumes:
+      - ./data/tdengine:/var/lib/taos            # 数据存储目录
+      - ./log/tdengine:/var/log/taos             # 日志存储目录
+    restart: always
