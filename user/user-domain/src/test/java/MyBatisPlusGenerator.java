@@ -79,7 +79,7 @@ public class MyBatisPlusGenerator {
         //4. 包名策略配置
         PackageConfig pkConfig = new PackageConfig();
         pkConfig.setParent("com.aiden.stock.user.domain")
-                .setMapper("mapper")
+                .setMapper("dao.mapper")
                 .setService("service")
                 .setController("controller")
                 .setEntity("dao.entity")

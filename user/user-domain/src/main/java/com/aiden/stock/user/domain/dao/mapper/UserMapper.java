@@ -1,4 +1,4 @@
-package com.aiden.stock.user.domain.mapper;
+package com.aiden.stock.user.domain.dao.mapper;
 
 import com.aiden.stock.user.domain.dao.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;

@@ -115,23 +115,28 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       port: 4000,
       proxy: {
         // 选项写法
-        '/user': {
-          target: 'http://0.0.0.0:1338',
+        '/base':{
+          target: 'http://0.0.0.0:8080',
           changeOrigin: true,
-          // rewrite: path => path.replace(/^\/api/, '')
-        },
-        // 选项写法
-        '/stock': {
-          target: 'http://0.0.0.0:1338',
-          changeOrigin: true,
-          // rewrite: path => path.replace(/^\/api/, '')
-        },
-        // 选项写法
-        '/dict': {
-          target: 'http://0.0.0.0:1337',
-          changeOrigin: true,
-          // rewrite: path => path.replace(/^\/api/, '')
+          rewrite: path => path.replace(/^\/base/, '')
         }
+        // '/user': {
+        //   target: 'http://0.0.0.0:10100',
+        //   changeOrigin: true,
+        //   // rewrite: path => path.replace(/^\/api/, '')
+        // },
+        // 选项写法
+        // '/stock': {
+        //   target: 'http://0.0.0.0:1338',
+        //   changeOrigin: true,
+        //   // rewrite: path => path.replace(/^\/api/, '')
+        // },
+        // 选项写法
+        // '/dict': {
+        //   target: 'http://0.0.0.0:1337',
+        //   changeOrigin: true,
+        //   // rewrite: path => path.replace(/^\/api/, '')
+        // }
       },
       hmr: {
         overlay: false

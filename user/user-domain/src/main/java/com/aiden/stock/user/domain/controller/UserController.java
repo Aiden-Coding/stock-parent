@@ -1,9 +1,15 @@
 package com.aiden.stock.user.domain.controller;
 
 
+import com.aiden.stock.comon.Result;
+import com.aiden.stock.user.dto.UserLoginResp;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * <p>
@@ -17,5 +23,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserController {
 
+    @PostMapping("/login")
+    public Result login() {
+        UserLoginResp ret = new UserLoginResp();
+        ret.setUsername("admin");
+        ret.setPassword("admin");
+        ret.setRole("admin");
+        ret.setRoleId(1);
+        List<String> permissions = new ArrayList<>();
+        ret.setPermissions(permissions);
+        permissions.add("*.*.*");
+        return Result.success(ret);
+    }
 }
 

@@ -12,9 +12,9 @@ import { config } from './config'
 
 import { ElMessage } from 'element-plus'
 
-const { result_code, base_url } = config
+const { result_code } = config
 
-export const PATH_URL = base_url[import.meta.env.VITE_API_BASEPATH]
+export const PATH_URL = import.meta.env.VITE_API_BASEPATH
 
 // 创建axios实例
 const service: AxiosInstance = axios.create({

@@ -7,7 +7,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>user-domain</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <name>user-domain Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <dependencies>
@@ -38,6 +38,16 @@
         <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity-engine-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aiden.stock</groupId>
+            <artifactId>common</artifactId>
+            <version>${stock.release.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.aiden.stock</groupId>
+            <artifactId>user-api</artifactId>
+            <version>${stock.release.version}</version>
         </dependency>
     </dependencies>
     <build>
