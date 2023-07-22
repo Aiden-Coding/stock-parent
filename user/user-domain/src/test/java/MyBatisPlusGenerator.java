@@ -72,7 +72,7 @@ public class MyBatisPlusGenerator {
                 // 生成的表, 支持多表一起生成，以数组形式填写
                 //TODO  TODO  TODO  TODO 两个方式，直接写，或者使用命令行输入
                 //方式 1
-                .setInclude("user");
+                .setInclude("group_stock","stock_base_info","stock_pic_tag");
         //方式 2
         //.setInclude(scanner("请输入要生成的表，多个用,来分隔").split(","));
 
