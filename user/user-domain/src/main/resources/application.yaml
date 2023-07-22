@@ -2,19 +2,45 @@ server:
   port: 10100   #  配置启动端口号
 
 spring: #springboot的配置
-  datasource: #定义数据源
-    #127.0.0.1为本机测试的ip，3306是mysql的端口号。serverTimezone是定义时区，照抄就好，mysql高版本需要定义这些东西
-    #useSSL也是某些高版本mysql需要问有没有用SSL连接
-    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&useSSL=FALSE
-    username: root  #数据库用户名，root为管理员
-    password: 123456 #该数据库用户的密码
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    # 使用druid数据源
+  datasource:
+    dynamic:
+      primary: master #设置默认的数据源或者数据源组,默认值即为master
+      strict: false #严格匹配数据源,默认false. true未匹配到指定数据源时抛异常,false使用默认数据源
+      datasource:
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://127.0.0.1:3306/test?characterEncoding=utf8&serverTimezone=Asia/Shanghai&serverTimezone=GMT%2B8&useSSL=FALSE
+          username: root
+          password: root
+          type: com.zaxxer.hikari.HikariDataSource
+          pool-name: MysqlDruidCP        #连接池名
+          hikari:
+            minimum-idle: 5                 #最小连接
+            maximum-pool-size: 15        #最大连接
+            is-auto-commit: true  #此属性控制从池返回的连接的默认自动提交行为,默认值：true
+            idle-timeout: 30000        #最大空闲时常
+            max-lifetime: 1800000        #最大生命周期
+            connection-timeout: 30000        #连接超时时间
+        slave:
+#          driver-class-name: com.taosdata.jdbc.TSDBDriver
+          url: jdbc:TAOS-RS://localhost:6041?user=root&password=taosdata
+          username: root
+          password: taosdata
+          type: com.zaxxer.hikari.HikariDataSource
+          pool-name: Data_trans_HikariCP
+          hikari:
+            minimum-idle: 10 #最小空闲连接数量
+            idle-timeout: 600000 #空闲连接存活最大时间，默认600000（10分钟）
+            maximum-pool-size: 100 #连接池最大连接数，默认是10
+            is-auto-commit: true  #此属性控制从池返回的连接的默认自动提交行为,默认值：true
+            max-lifetime: 1800000 #此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
+            connection-timeout: 30000 #数据库连接超时时间,默认30秒，即30000
+            connection-test-query: SELECT 1
 
 # mybatis-plus相关配置
 mybatis-plus:
   # xml扫描，多个目录用逗号或者分号分隔（告诉 Mapper 所对应的 XML 文件位置）
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
   # 以下配置均有默认值,可以不设置
   global-config:
     db-config:

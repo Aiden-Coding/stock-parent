@@ -9,7 +9,12 @@ spring:
         - id: user-domain-http
           uri: http://localhost:10100
           predicates:
-            - Path=/user/**
+            - Path=/user/**,/group/**
+
+        - id: python
+          uri: http://localhost:1338
+          predicates:
+            - Path=/akshare/**,/stock/**,/stockPicTag/**
         - id: foo-service-route
           predicates:
             - Path=/demo/**

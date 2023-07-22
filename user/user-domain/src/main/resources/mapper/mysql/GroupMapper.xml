@@ -12,5 +12,17 @@
     <sql id="Base_Column_List">
         id, name
     </sql>
+    <select id="queryGroupStock" resultType="com.aiden.stock.user.dto.GroupStockResp">
+        SELECT a.id,b.stock_code
+        FROM `user_group` a
+            inner join user_group_stock b on a.id = b.group_id
+        where 1=1
+        <if test="groupId != null">
+            and a.id = #{groupId}
+        </if>
+        <if test="groupName != null and groupName != ''">
+            and a.name = #{groupName}
+        </if>
+    </select>
 
 </mapper>

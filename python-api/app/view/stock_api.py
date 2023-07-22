@@ -114,27 +114,6 @@ async def logout(request, ticker, multiplier, timespan, from_time, to):
             resultData.append(data)
     ret = Result(resultData, SUCCESS)
     return response.text(MyEncoder().encode(ret))
-
-
-@stockApi.route("/myGroup/add", methods=['POST'])
-async def myGroupadd(request):
-    groupName = request.json.get("name")
-    groupDb = group(name=groupName)
-    await groupDb.save()
-    ret = Result('ok', SUCCESS)
-    return response.text(MyEncoder().encode(ret))
-
-
-@stockApi.route("/myGroup/grouplist")
-async def myGroupgrouplist(request):
-    list = await group.all()
-    groups = []
-    for groupT in list:
-        groups.append(GroupDto(id=groupT.id, name=groupT.name))
-    ret = Result(groups, SUCCESS)
-    return response.text(MyEncoder().encode(ret))
-
-
 async def execute_raw_sql(sql, params):
     # 在事务中执行原生 SQL 查询
     async with in_transaction() as conn:
