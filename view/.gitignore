@@ -1,0 +1,15 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+/dist*
+*-lock.*
+pnpm-debug
+.idea
+**/__pycache__/*
+**/__pycache__*
+app/config/__pycache__/__init__.cpython-310.pyc
+.husky
+.vscode
+.github
