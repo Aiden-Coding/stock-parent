@@ -1,118 +1,54 @@
-import com.baomidou.mybatisplus.annotation.DbType;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
-import com.baomidou.mybatisplus.generator.config.GlobalConfig;
-import com.baomidou.mybatisplus.generator.config.PackageConfig;
-import com.baomidou.mybatisplus.generator.config.StrategyConfig;
-import com.baomidou.mybatisplus.generator.config.rules.DateType;
+import com.baomidou.mybatisplus.generator.FastAutoGenerator;
+import com.baomidou.mybatisplus.generator.config.OutputFile;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
-import java.util.Scanner;
+
+import java.util.Collections;
 
 public class MyBatisPlusGenerator {
-
     public static void main(String[] args) {
-        //1. 全局配置
-//        GlobalConfig config = new GlobalConfig();
-//        // 是否支持AR模式
-//        config.setActiveRecord(true)
-//                // 作者
-//                .setAuthor("xiaowa")
-//                // 生成路径，最好使用绝对路径，window路径是不一样的
-//                //TODO  TODO  TODO  TODO
-//                .setOutputDir("user/user-domain/src/main/java")
-//                // 文件覆盖
-//                .setFileOverride(true)
-//                // 主键策略
-//                .setIdType(IdType.AUTO)
-//
-//                .setDateType(DateType.ONLY_DATE)
-//                // 设置生成的service接口的名字的首字母是否为I，默认Service是以I开头的
-//                .setServiceName("%sService")
-//
-//                //实体类结尾名称
-//                .setEntityName("%s")
-//
-//                //生成基本的resultMap
-//                .setBaseResultMap(true)
-//
-//                //不使用AR模式
-//                .setActiveRecord(false)
-//
-//                //生成基本的SQL片段
-//                .setBaseColumnList(true);
-//
-//        //2. 数据源配置
-//        DataSourceConfig dsConfig = new DataSourceConfig();
-//        // 设置数据库类型
-//        dsConfig.setDbType(DbType.MYSQL)
-//                //注意，看数据库版本，版本高是 com.mysql.cj.jdbc.Driver
-//                .setDriverName("com.mysql.cj.jdbc.Driver")
-//                //TODO  TODO  TODO  TODO
-//                .setUrl("jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&useSSL=FALSE")
-//                .setUsername("root")
-//                .setPassword("root");
-//
-//        //3. 策略配置globalConfiguration中
-//        StrategyConfig stConfig = new StrategyConfig();
-//
-//        //全局大写命名
-//        stConfig.setCapitalMode(true)
-//                // 数据库表映射到实体的命名策略
-//                .setNaming(NamingStrategy.underline_to_camel)
-//
-//                //使用lombok
-//                .setEntityLombokModel(true)
-//
-//                //使用restcontroller注解
-//                .setRestControllerStyle(true)
-//
-//                // 生成的表, 支持多表一起生成，以数组形式填写
-//                //TODO  TODO  TODO  TODO 两个方式，直接写，或者使用命令行输入
-//                //方式 1
-//                .setInclude("group_stock","stock_base_info","stock_pic_tag");
-//        //方式 2
-//        //.setInclude(scanner("请输入要生成的表，多个用,来分隔").split(","));
-//
-//        //4. 包名策略配置
-//        PackageConfig pkConfig = new PackageConfig();
-//        pkConfig.setParent("com.aiden.stock.user.domain")
-//                .setMapper("dao.mapper")
-//                .setService("service")
-//                .setController("controller")
-//                .setEntity("dao.entity")
-//                .setXml("dao.mapper");
-//
-//        //5. 整合配置
-//        AutoGenerator ag = new AutoGenerator();
-//        ag.setGlobalConfig(config)
-//                .setDataSource(dsConfig)
-//                .setStrategy(stConfig)
-//                .setPackageInfo(pkConfig);
-//
-//        //6. 执行操作
-//        ag.execute();
-//        System.out.println("======= mybatis plus 相关代码生成完毕  ========");
+        FastAutoGenerator.create("jdbc:mysql://127.0.0.1:3306/test?characterEncoding=UTF-8&useUnicode=true&useSSL=false", "root", "root")
+                // 全局配置
+                .globalConfig(builder -> {
+                    builder.author("wanggc") // 设置作者
+                            .commentDate("yyyy-MM-dd hh:mm:ss")   //注释日期
+                            .outputDir("user/user-domain/src/main/java") // 指定输出目录
+                            .disableOpenDir() //禁止打开输出目录，默认打开
+                    ;
+                })
+                // 包配置
+                .packageConfig(builder -> {
+                    builder.parent("com.aiden.stock.user.domain") // 设置父包名
+                            .entity("dao.entity")
+                            .mapper("dao.mapper")
+                            .pathInfo(Collections.singletonMap(OutputFile.xml, "user/user-domain/src/main/resources/mapper/mysql")); // 设置mapperXml生成路径
+                })
+                // 策略配置
+                .strategyConfig(builder -> {
+                    builder.addInclude("user_group_stock") // 设置需要生成的表名
+//                            .addTablePrefix("sys_") // 设置过滤表前缀
+                            // Entity 策略配置
+                            .entityBuilder()
+                            .enableLombok() //开启 Lombok
+                            .enableFileOverride() // 覆盖已生成文件
+                            .naming(NamingStrategy.underline_to_camel)  //数据库表映射到实体的命名策略：下划线转驼峰命
+                            .columnNaming(NamingStrategy.underline_to_camel)    //数据库表字段映射到实体的命名策略：下划线转驼峰命
+                            // Mapper 策略配置
+                            .mapperBuilder()
+                            .enableBaseResultMap()
+                            .enableFileOverride()
+                            .enableBaseColumnList()
+                            .enableFileOverride() // 覆盖已生成文件
+                            // Service 策略配置
+                            .serviceBuilder()
+                            .enableFileOverride() // 覆盖已生成文件
+                            .formatServiceFileName("%sService") //格式化 service 接口文件名称，%s进行匹配表名，如 UserService
+                            .formatServiceImplFileName("%sServiceImpl") //格式化 service 实现类文件名称，%s进行匹配表名，如 UserServiceImpl
+                            // Controller 策略配置
+                            .controllerBuilder()
+                            .enableFileOverride() // 覆盖已生成文件
+                    ;
+                })
+                .execute();
+
     }
-//
-//    /**
-//     * <p>
-//     * 读取控制台内容
-//     * </p>
-//     */
-//    public static String scanner(String tip) {
-//        Scanner scanner = new Scanner(System.in);
-//        StringBuilder help = new StringBuilder();
-//        help.append("请输入" + tip + "：");
-//        System.out.println(help.toString());
-//        if (scanner.hasNext()) {
-//            String ipt = scanner.next();
-//            if (StringUtils.isNotBlank(ipt)) {
-//                return ipt;
-//            }
-//        }
-//        throw new MybatisPlusException("请输入正确的" + tip + "！");
-//    }
 }

@@ -1,11 +1,11 @@
 package com.aiden.stock.user.domain.service.impl;
 
-import com.aiden.stock.user.domain.dao.entity.Group;
-import com.aiden.stock.user.domain.dao.mapper.GroupMapper;
-import com.aiden.stock.user.domain.service.GroupService;
+import com.aiden.stock.user.domain.dao.entity.UserGroup;
+import com.aiden.stock.user.domain.dao.mapper.UserGroupMapper;
+import com.aiden.stock.user.domain.service.UserGroupService;
 import com.aiden.stock.user.dto.GroupAddReq;
-import com.aiden.stock.user.dto.GroupResp;
-import com.aiden.stock.user.dto.GroupStockReq;
+import com.aiden.stock.user.dto.UserGroupResp;
+import com.aiden.stock.user.dto.UserGroupStockReq;
 import com.aiden.stock.user.dto.GroupStockResp;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -21,28 +21,28 @@ import java.util.List;
  * 组 服务实现类
  * </p>
  *
- * @author xiaowa
- * @since 2023-07-22
+ * @author wanggc
+ * @since 2023-07-22 10:15:13
  */
 @Service
-public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements GroupService {
+public class UserGroupServiceImpl extends ServiceImpl<UserGroupMapper, UserGroup> implements UserGroupService {
 
     @Override
     public void addGroup(GroupAddReq req) {
-        Group group = new Group();
+        UserGroup group = new UserGroup();
         group.setName(req.getName());
         baseMapper.insert(group);
     }
 
     @Override
-    public List<GroupResp> grouplist() {
-        List<GroupResp> ret = new ArrayList<>();
+    public List<UserGroupResp> grouplist() {
+        List<UserGroupResp> ret = new ArrayList<>();
         QueryWrapper queryWrapper = new QueryWrapper<>();
         queryWrapper.isNotNull("id");
-        List<Group> retDB = baseMapper.selectList(queryWrapper);
+        List<UserGroup> retDB = baseMapper.selectList(queryWrapper);
         if (!CollectionUtils.isEmpty(retDB)) {
             retDB.forEach( x -> {
-                GroupResp retTmp = new GroupResp();
+                UserGroupResp retTmp = new UserGroupResp();
                 BeanUtils.copyProperties(x,retTmp);
                 ret.add(retTmp);
             });
@@ -51,7 +51,7 @@ public class GroupServiceImpl extends ServiceImpl<GroupMapper, Group> implements
     }
 
     @Override
-    public List<GroupStockResp> groupStock(GroupStockReq req) {
+    public List<GroupStockResp> groupStock(UserGroupStockReq req) {
         return null;
     }
 }
