@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+#        - id: user-domain
+#          uri: lb://user-domain
+#          predicates:
+#            - Path=/user/**
+        - id: user-domain-http
+          uri: http://localhost:10100
+          predicates:
+            - Path=/user/**
+        - id: foo-service-route
+          predicates:
+            - Path=/demo/**
+          uri: http://localhost:9669/
+        - filters:
+            - RewritePath=/httpbin/(?<segment>.*), /${segment}
+          id: httpbin-route
+          predicates:
+            - Path=/httpbin/**
+          uri: https://httpbin.org
