@@ -1,6 +1,5 @@
-from json import JSONEncoder
-
 import talib as tl
+from json import JSONEncoder
 
 import app.strategy.backtrace_ma250 as backtrace_ma250
 import app.strategy.breakthrough_platform as breakthrough_platform
@@ -25,6 +24,12 @@ class Result:
     def __init__(self, data, code):
         self.data = data
         self.code = code
+
+    def to_json(self):
+        return {
+            "data": self.data,
+            "code": self.code
+        }
 
 
 RATE_FIELDS_COUNT = 100  # N日收益率字段数目，即N值

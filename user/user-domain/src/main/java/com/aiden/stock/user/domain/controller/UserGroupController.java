@@ -3,15 +3,11 @@ package com.aiden.stock.user.domain.controller;
 import com.aiden.stock.comon.Result;
 import com.aiden.stock.user.domain.service.UserGroupService;
 import com.aiden.stock.user.dto.GroupAddReq;
+import com.aiden.stock.user.dto.GroupStockResp;
 import com.aiden.stock.user.dto.UserGroupResp;
 import com.aiden.stock.user.dto.UserGroupStockReq;
-import com.aiden.stock.user.dto.GroupStockResp;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,7 +19,7 @@ import java.util.List;
  * @author wanggc
  * @since 2023-07-22 10:15:13
  */
-@Controller
+@RestController
 @RequestMapping("/userGroup")
 public class UserGroupController {
 

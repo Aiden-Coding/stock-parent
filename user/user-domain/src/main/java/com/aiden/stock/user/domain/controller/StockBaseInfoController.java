@@ -4,7 +4,6 @@ package com.aiden.stock.user.domain.controller;
 import com.aiden.stock.comon.Result;
 import com.aiden.stock.user.StockApi;
 import com.aiden.stock.user.dto.StockBaseResp;
-import com.aiden.stock.user.httpRsult.ResultSearch;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +39,8 @@ public class StockBaseInfoController {
 //
 //        TypeReference<Result<List<StockBaseResp>>> typeRef = new TypeReference<Result<List<StockBaseResp>>>() {};
 //        Result<List<StockBaseResp>> result = JSON.parseObject(retstr, typeRef);
-        ResultSearch result = stockApi.search(search);
-       return Result.success();
+        Result result = stockApi.search(search);
+       return result;
 //       return Result.success(collection);
     }
 

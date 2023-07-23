@@ -1,6 +1,5 @@
-from datetime import datetime
-
 import pandas as pd
+from datetime import datetime
 from sanic import Blueprint, response
 from tortoise.expressions import Q
 from tortoise.transactions import in_transaction
@@ -9,14 +8,10 @@ import app.utils.akshare_ext as akext
 from app.constant import Result, MyEncoder
 from app.constant import SUCCESS
 from app.dao.cn_ths_stock_block import cn_ths_stock_block
-from app.dao.group.group import group
 from app.dao.stock_base_info import StockBaseInfo
 from app.service import stock
-from app.view.group.groupStockdto import GroupStockDto
-from app.view.group.groupdto import GroupDto
-
+import json
 stockApi = Blueprint('stockApi', url_prefix='/stock')
-
 
 class TickData:
     def __init__(self, time, open, high, low, close, volume, turnover):
@@ -35,6 +30,13 @@ class StockBase:
         self.shortName = shortName
         self.ticker = ticker
 
+    def to_json(self):
+        return {
+            "name": self.name,
+            "shortName": self.shortName,
+            "ticker": self.ticker
+        }
+
 
 @stockApi.route("/search")
 async def search_base_info(request):
@@ -44,16 +46,14 @@ async def search_base_info(request):
         stocks = await StockBaseInfo.filter(Q(Q(code__contains=search), Q(name__contains=search), join_type="OR"))
         for stock in stocks:
             stock_tmp = StockBase(stock.name, stock.name, stock.code)
-            result_data.append(stock_tmp)
+            result_data.append(stock_tmp.to_json())
 
         stocks2 = await cn_ths_stock_block.filter(Q(Q(code__contains=search), Q(name__contains=search), join_type="OR"))
         for stock in stocks2:
             stock_tmp = StockBase(stock.name, stock.name, stock.code)
-            result_data.append(stock_tmp)
+            result_data.append(stock_tmp.to_json())
     ret = Result(result_data, SUCCESS)
-    return response.json(MyEncoder().encode(ret))
-
-
+    return response.json(ret.to_json())
 @stockApi.route("/ticker/<ticker>/range/<multiplier>/<timespan>/<from_time>/<to>")
 async def logout(request, ticker, multiplier, timespan, from_time, to):
     stt = await cn_ths_stock_block.get_or_none(code=ticker)
@@ -114,6 +114,7 @@ async def logout(request, ticker, multiplier, timespan, from_time, to):
             resultData.append(data)
     ret = Result(resultData, SUCCESS)
     return response.text(MyEncoder().encode(ret))
+
 async def execute_raw_sql(sql, params):
     # 在事务中执行原生 SQL 查询
     async with in_transaction() as conn:
@@ -121,4 +122,3 @@ async def execute_raw_sql(sql, params):
     # 获取查询返回的所有行
     result = result[1]
     return result
-
