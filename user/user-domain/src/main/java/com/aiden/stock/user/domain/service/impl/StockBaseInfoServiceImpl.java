@@ -1,7 +1,7 @@
 package com.aiden.stock.user.domain.service.impl;
 
-import com.aiden.stock.user.domain.dao.entity.StockBaseInfo;
-import com.aiden.stock.user.domain.dao.mapper.StockBaseInfoMapper;
+import com.aiden.stock.user.domain.dao.mysql.entity.StockBaseInfo;
+import com.aiden.stock.user.domain.dao.mysql.mapper.StockBaseInfoMapper;
 import com.aiden.stock.user.domain.service.StockBaseInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

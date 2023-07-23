@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aiden.stock.user.domain.dao.mapper.StockPicTagMapper">
+<mapper namespace="com.aiden.stock.user.domain.dao.mysql.mapper.StockPicTagMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.aiden.stock.user.domain.dao.entity.StockPicTag">
+    <resultMap id="BaseResultMap" type="com.aiden.stock.user.domain.dao.mysql.entity.StockPicTag">
         <id column="id" property="id" />
         <result column="name" property="name" />
         <result column="code" property="code" />

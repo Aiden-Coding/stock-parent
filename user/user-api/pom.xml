@@ -27,5 +27,14 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aiden.stock</groupId>
+            <artifactId>common</artifactId>
+            <version>${stock.release.version}</version>
+        </dependency>
     </dependencies>
 </project>

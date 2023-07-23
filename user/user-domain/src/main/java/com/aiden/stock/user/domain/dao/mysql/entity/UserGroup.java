@@ -1,4 +1,4 @@
-package com.aiden.stock.user.domain.dao.entity;
+package com.aiden.stock.user.domain.dao.mysql.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -9,16 +9,16 @@ import lombok.Setter;
 
 /**
  * <p>
- * 组和股票关系
+ * 组
  * </p>
  *
  * @author wanggc
- * @since 2023-07-22 10:22:59
+ * @since 2023-07-22 10:15:13
  */
 @Getter
 @Setter
-@TableName("user_group_stock")
-public class UserGroupStock implements Serializable {
+@TableName("user_group")
+public class UserGroup implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -29,12 +29,7 @@ public class UserGroupStock implements Serializable {
     private Long id;
 
     /**
-     * 组名称
+     * 名称
      */
-    private Long groupId;
-
-    /**
-     * 股票code
-     */
-    private String stockCode;
+    private String name;
 }

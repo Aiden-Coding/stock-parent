@@ -1,16 +1,18 @@
 package com.aiden.stock.comon;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@JsonIgnoreProperties(ignoreUnknown = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class Result<T> {
     private String code;
     private T data;
 
-    public Result(String code, T data) {
-        this.code = code;
-        this.data = data;
-    }
     public static <T> Result<T> success() {
         return new Result("0000", "success");
     }

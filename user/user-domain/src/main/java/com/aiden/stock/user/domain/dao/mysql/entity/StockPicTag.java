@@ -1,4 +1,4 @@
-package com.aiden.stock.user.domain.dao.entity;
+package com.aiden.stock.user.domain.dao.mysql.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

@@ -1,6 +1,6 @@
 package com.aiden.stock.user.domain.service;
 
-import com.aiden.stock.user.domain.dao.entity.UserGroupStock;
+import com.aiden.stock.user.domain.dao.mysql.entity.UserGroupStock;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**

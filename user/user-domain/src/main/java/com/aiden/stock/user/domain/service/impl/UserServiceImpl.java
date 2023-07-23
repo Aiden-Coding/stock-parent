@@ -1,7 +1,7 @@
 package com.aiden.stock.user.domain.service.impl;
 
-import com.aiden.stock.user.domain.dao.entity.User;
-import com.aiden.stock.user.domain.dao.mapper.UserMapper;
+import com.aiden.stock.user.domain.dao.mysql.entity.User;
+import com.aiden.stock.user.domain.dao.mysql.mapper.UserMapper;
 import com.aiden.stock.user.domain.service.UserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

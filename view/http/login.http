@@ -12,3 +12,8 @@ DELETE http://localhost:1338/stockPicTag/deleteById/1
 GET  http://localhost:1338/stock/myGroup/grouplist
 ### delet
 POST http://localhost:8080/user/login
+### delet
+GET http://localhost:10100/stockBaseInfo/search?search=美利云
+
+### delet
+GET http://localhost:1338/stock/search?search=美利云

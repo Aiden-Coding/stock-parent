@@ -51,7 +51,7 @@ async def search_base_info(request):
             stock_tmp = StockBase(stock.name, stock.name, stock.code)
             result_data.append(stock_tmp)
     ret = Result(result_data, SUCCESS)
-    return response.text(MyEncoder().encode(ret))
+    return response.json(MyEncoder().encode(ret))
 
 
 @stockApi.route("/ticker/<ticker>/range/<multiplier>/<timespan>/<from_time>/<to>")
@@ -122,15 +122,3 @@ async def execute_raw_sql(sql, params):
     result = result[1]
     return result
 
-
-@stockApi.route("/myGroup/stocks", methods=['POST'])
-async def myGroupstocks(request):
-    sql = 'SELECT `group`.id,group_stock.stock_code FROM `group` inner join group_stock on `group`.id = group_stock.group_id where `group`.name= %s'
-    params = (request.json.get('groupName'),)
-    result = await execute_raw_sql(sql, params)
-
-    groups = []
-    for groupT in result:
-        groups.append(GroupStockDto(group_id=groupT['id'], code=groupT['stock_code']))
-    ret = Result(groups, SUCCESS)
-    return response.text(MyEncoder().encode(ret))

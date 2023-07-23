@@ -1,7 +1,7 @@
 package com.aiden.stock.user.domain.service.impl;
 
-import com.aiden.stock.user.domain.dao.entity.StockPicTag;
-import com.aiden.stock.user.domain.dao.mapper.StockPicTagMapper;
+import com.aiden.stock.user.domain.dao.mysql.entity.StockPicTag;
+import com.aiden.stock.user.domain.dao.mysql.mapper.StockPicTagMapper;
 import com.aiden.stock.user.domain.service.StockPicTagService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;

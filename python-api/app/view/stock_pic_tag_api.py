@@ -21,7 +21,7 @@ async def search_base_info(request):
                                 tagText=picTag['tagText'], createDate=datetime.now())
     await picTagDB.save()
     ret = Result('ok', SUCCESS)
-    return response.text(MyEncoder().encode(ret))
+    return response.json(MyEncoder().encode(ret))
 
 
 @stockPicTagApi.route("/getId")

@@ -1,6 +1,6 @@
 package com.aiden.stock.user.domain.service;
 
-import com.aiden.stock.user.domain.dao.entity.UserGroup;
+import com.aiden.stock.user.domain.dao.mysql.entity.UserGroup;
 import com.aiden.stock.user.dto.GroupAddReq;
 import com.aiden.stock.user.dto.UserGroupResp;
 import com.aiden.stock.user.dto.UserGroupStockReq;

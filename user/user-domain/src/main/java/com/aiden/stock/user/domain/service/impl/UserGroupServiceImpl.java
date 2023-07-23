@@ -1,7 +1,7 @@
 package com.aiden.stock.user.domain.service.impl;
 
-import com.aiden.stock.user.domain.dao.entity.UserGroup;
-import com.aiden.stock.user.domain.dao.mapper.UserGroupMapper;
+import com.aiden.stock.user.domain.dao.mysql.entity.UserGroup;
+import com.aiden.stock.user.domain.dao.mysql.mapper.UserGroupMapper;
 import com.aiden.stock.user.domain.service.UserGroupService;
 import com.aiden.stock.user.dto.GroupAddReq;
 import com.aiden.stock.user.dto.UserGroupResp;
@@ -52,6 +52,6 @@ public class UserGroupServiceImpl extends ServiceImpl<UserGroupMapper, UserGroup
 
     @Override
     public List<GroupStockResp> groupStock(UserGroupStockReq req) {
-        return null;
+        return baseMapper.queryGroupStock(null,req.getGroupName());
     }
 }

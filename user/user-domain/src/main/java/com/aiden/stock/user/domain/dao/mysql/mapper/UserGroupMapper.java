@@ -1,6 +1,6 @@
-package com.aiden.stock.user.domain.dao.mapper;
+package com.aiden.stock.user.domain.dao.mysql.mapper;
 
-import com.aiden.stock.user.domain.dao.entity.UserGroup;
+import com.aiden.stock.user.domain.dao.mysql.entity.UserGroup;
 import com.aiden.stock.user.dto.GroupStockResp;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;

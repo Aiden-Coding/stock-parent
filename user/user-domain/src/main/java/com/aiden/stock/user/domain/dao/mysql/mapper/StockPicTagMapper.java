@@ -1,6 +1,6 @@
-package com.aiden.stock.user.domain.dao.mapper;
+package com.aiden.stock.user.domain.dao.mysql.mapper;
 
-import com.aiden.stock.user.domain.dao.entity.StockPicTag;
+import com.aiden.stock.user.domain.dao.mysql.entity.StockPicTag;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

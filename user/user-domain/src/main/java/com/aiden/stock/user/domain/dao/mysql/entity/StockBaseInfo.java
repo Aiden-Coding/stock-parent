@@ -1,4 +1,4 @@
-package com.aiden.stock.user.domain.dao.entity;
+package com.aiden.stock.user.domain.dao.mysql.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -9,7 +9,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 
+ * 股票信息
  * </p>
  *
  * @author xiaowa
@@ -17,19 +17,25 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@TableName("user")
-public class User implements Serializable {
+@TableName("stock_base_info")
+public class StockBaseInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * id
+     */
       @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
+    /**
+     * 名称
+     */
     private String name;
 
-    private Boolean sex;
+    private String code;
 
-    private String password;
+    private Double latestPrice;
 
 
 }
