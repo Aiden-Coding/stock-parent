@@ -1,7 +1,11 @@
 package com.aiden.stock.user.domain.service;
 
 import com.aiden.stock.user.domain.dao.mysql.entity.StockPicTag;
+import com.aiden.stock.user.dto.StockPicTagAddReq;
+import com.aiden.stock.user.dto.StockPicTagResp;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,9 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface StockPicTagService extends IService<StockPicTag> {
 
+    void add(StockPicTagAddReq req);
+
+    void deleteById(Long id);
+
+    List<StockPicTagResp> getPicTagByCode(String code,String timespan);
 }

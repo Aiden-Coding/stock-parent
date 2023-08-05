@@ -19,9 +19,11 @@ spring:
           predicates:
             - Path=/demo/**
           uri: http://localhost:9669/
-        - filters:
+          filters:
             - RewritePath=/httpbin/(?<segment>.*), /${segment}
-          id: httpbin-route
+        - id: python-ak
+          uri: http://localhost:8000
           predicates:
-            - Path=/httpbin/**
-          uri: https://httpbin.org
+            - Path=/pythonAkApi/**
+          filters:
+            - StripPrefix=1

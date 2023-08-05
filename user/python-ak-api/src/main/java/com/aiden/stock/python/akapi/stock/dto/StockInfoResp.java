@@ -1,4 +1,4 @@
-package com.aiden.stock.user.dto;
+package com.aiden.stock.python.akapi.stock.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -10,14 +10,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class StockBaseResp {
+public class StockInfoResp {
 
     @JsonProperty("name")
     private String name;
 
-    @JsonProperty("shortName")
-    private String shortName;
-
-    @JsonProperty("ticker")
-    private String ticker;
+    @JsonProperty("code")
+    private String code;
 }

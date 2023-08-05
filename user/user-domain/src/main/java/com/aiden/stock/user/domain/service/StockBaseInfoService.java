@@ -1,7 +1,10 @@
 package com.aiden.stock.user.domain.service;
 
+import com.aiden.stock.python.akapi.stock.dto.StockInfoResp;
 import com.aiden.stock.user.domain.dao.mysql.entity.StockBaseInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2023-07-22
  */
 public interface StockBaseInfoService extends IService<StockBaseInfo> {
+    void updateStockInfo(List<StockInfoResp> stockInfoRespList);
 
 }

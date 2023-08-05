@@ -71,6 +71,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>com.aiden.stock</groupId>
+            <artifactId>python-ak-api</artifactId>
+            <version>${stock.release.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <finalName>user-domain</finalName>

@@ -13,7 +13,10 @@ GET  http://localhost:1338/stock/myGroup/grouplist
 ### delet
 POST http://localhost:8080/user/login
 ### delet
-GET http://localhost:10100/stockBaseInfo/search?search=美利云
+GET http://localhost:10100/stockBaseInfo/search
 
 ### delet
-GET http://localhost:1338/stock/search?search=美利云
+GET http://localhost:8080/pythonAkApi/stock/stock_info_a_code_name
+
+### delet
+GET http://localhost:1338/stock/search
