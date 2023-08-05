@@ -2,11 +2,15 @@ package com.aiden.stock.user.domain.controller;
 
 
 import com.aiden.stock.comon.Result;
-import com.aiden.stock.python.akapi.stock.StockApi;
+import com.aiden.stock.user.domain.dto.StockInfoSearchResp;
+import com.aiden.stock.user.domain.service.StockBaseInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * <p>
@@ -21,11 +25,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class StockBaseInfoController {
 
     @Autowired
-    private StockApi stockApi;
+    private StockBaseInfoService stockBaseInfoService;
     @GetMapping("/search")
-    public Result search() {
-        Result result = stockApi.stock_info_a_code_name();
-       return result;
+    public Result<List<StockInfoSearchResp>> search(@RequestParam("search") String search) {
+        List<StockInfoSearchResp> ret = stockBaseInfoService.searchByKeyWord(search);
+       return Result.success(ret);
     }
 }
 

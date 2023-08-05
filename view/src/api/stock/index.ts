@@ -22,3 +22,7 @@ export const addStockApi = (groupId: any): Promise<IResponse> => {
 export const deleteStockApi = (groupId: any, code: any): Promise<IResponse> => {
   return request.delete({ url: '/stock/myGroup/deleteStock', groupId, code })
 }
+
+export const searchStockApi = (search: any): Promise<IResponse> => {
+  return request.get({ url: '/stockBaseInfo/search', params: { search } })
+}

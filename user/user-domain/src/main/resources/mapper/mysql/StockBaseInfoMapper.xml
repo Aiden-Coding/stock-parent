@@ -14,5 +14,12 @@
     <sql id="Base_Column_List">
         id, name, code, latest_price
     </sql>
+    <select id="searchByKeyWord" resultType="com.aiden.stock.user.domain.dto.StockInfoSearchResp"
+            parameterType="java.lang.String">
+        select name,code from stock_base_info
+        <if test="search != null and search !='' ">
+         where code like CONCAT('%',#{search},'%') or name like CONCAT('%',#{search},'%')
+        </if>
+    </select>
 
 </mapper>

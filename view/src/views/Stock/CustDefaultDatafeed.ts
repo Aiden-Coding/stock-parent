@@ -13,6 +13,8 @@
  */
 
 import { KLineData } from 'klinecharts'
+
+import { searchStockApi } from '@/api/stock'
 import { Datafeed, SymbolInfo, Period, DatafeedSubscribeCallback } from 'npm_klinecharts_pro'
 
 export default class CustDefaultDatafeed implements Datafeed {
@@ -23,8 +25,7 @@ export default class CustDefaultDatafeed implements Datafeed {
   private _ws?: WebSocket
 
   async searchSymbols(search?: string): Promise<SymbolInfo[]> {
-    const response = await fetch(`/stock/search?search=${search ?? ''}`)
-    const result = await response.json()
+    const result = await searchStockApi(search)
     return await (result.data || []).map((data: any) => ({
       ticker: data.ticker,
       name: data.name,
