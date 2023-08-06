@@ -36,7 +36,7 @@ public class StockPicTagController {
         return Result.success();
     }
 
-    @PostMapping("/getPicTag")
+    @GetMapping("/getPicTag")
     public Result<List<StockPicTagResp>> getPicTagByCode(@RequestParam("code") String code,@RequestParam("timespan") String timespan) {
         List<StockPicTagResp> ret = stockPicTagService.getPicTagByCode(code,timespan);
         return Result.success(ret);

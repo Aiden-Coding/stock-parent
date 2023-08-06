@@ -14,7 +14,7 @@
 
 import { KLineData } from 'klinecharts'
 
-import { searchStockApi } from '@/api/stock'
+import { searchStockApi, tickerStockApi } from '@/api/stock'
 import { Datafeed, SymbolInfo, Period, DatafeedSubscribeCallback } from 'npm_klinecharts_pro'
 
 export default class CustDefaultDatafeed implements Datafeed {
@@ -27,9 +27,9 @@ export default class CustDefaultDatafeed implements Datafeed {
   async searchSymbols(search?: string): Promise<SymbolInfo[]> {
     const result = await searchStockApi(search)
     return await (result.data || []).map((data: any) => ({
-      ticker: data.ticker,
+      ticker: data.code,
       name: data.name,
-      shortName: data.shortName,
+      shortName: data.name,
       market: data.market,
       exchange: data.primary_exchange,
       priceCurrency: data.currency_name,
@@ -53,18 +53,21 @@ export default class CustDefaultDatafeed implements Datafeed {
     to: number
   ): Promise<KLineData[]> {
     try {
-      const response = await fetch(
-        `/stock/ticker/${symbol.ticker}/range/${period.multiplier}/${period.timespan}/${from}/${to}`
+      const result = await tickerStockApi(
+        symbol.ticker,
+        period.multiplier,
+        period.timespan,
+        from,
+        to
       )
-      const result = await response.json()
       return await (result.data || []).map((data: any) => ({
-        timestamp: data.t,
-        open: data.o,
-        high: data.h,
-        low: data.l,
-        close: data.c,
-        volume: data.v,
-        turnover: data.vw
+        timestamp: data.timestamp,
+        open: data.open,
+        high: data.high,
+        low: data.low,
+        close: data.close,
+        volume: data.bargainamount,
+        turnover: data.turnover
       }))
     } catch (e) {
       console.log(e)

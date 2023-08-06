@@ -26,3 +26,15 @@ export const deleteStockApi = (groupId: any, code: any): Promise<IResponse> => {
 export const searchStockApi = (search: any): Promise<IResponse> => {
   return request.get({ url: '/stockBaseInfo/search', params: { search } })
 }
+
+export const tickerStockApi = (
+  ticker: any,
+  multiplier: any,
+  timespan: any,
+  from: any,
+  to: any
+): Promise<IResponse> => {
+  return request.get({
+    url: `/pythonAkApi/stock/stock_zh_a_hist/${ticker}/range/${multiplier}/${timespan}/${from}/${to}`
+  })
+}
